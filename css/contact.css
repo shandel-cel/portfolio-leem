@@ -1,0 +1,561 @@
+/* Base styles and reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: #0a0a0a;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Welcome overlay animation */
+.welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0c0b0b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeOverlay 3s ease-in-out forwards;
+}
+
+.welcome-text {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 5rem;
+  color: #fff;
+  opacity: 0;
+  filter: blur(10px);
+  animation: welcomeText 2.5s ease-in-out forwards;
+  text-align: center;
+}
+
+@keyframes fadeOverlay {
+  0% {
+      opacity: 1;
+  }
+  70% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+      visibility: hidden;
+  }
+}
+
+@keyframes welcomeText {
+  0% {
+      opacity: 0;
+      filter: blur(20px);
+      transform: scale(0.8);
+  }
+  50% {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+  }
+  80% {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+  }
+  100% {
+      opacity: 0;
+      filter: blur(20px);
+      transform: scale(1.2);
+  }
+}
+
+/* Main container */
+.container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Background container for GIF */
+.bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('../resources/lumine.gif') center center/cover no-repeat;
+  opacity: 0.7;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+/* Add an overlay to make content more readable */
+.bg-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(70, 70, 70, 0.7) 0%, rgba(44, 43, 43, 0.5) 100%);
+}
+
+/* Content wrapper */
+.content-wrapper {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  color: #fff;
+}
+
+/* Header styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  position: relative;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 1rem;
+  position: relative;
+  z-index: 10;
+  color: white
+}
+
+.icon-btn:hover {
+  color: #f5c6f1;
+  transform: rotate(30deg);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+}
+nav ul {
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 2rem;
+  position: relative;
+}
+
+nav ul li a {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color:   #df9eec;
+  transition: width 0.4s ease;
+}
+
+nav ul li a:hover {
+  color: #df9eec;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+nav ul li.active a {
+  color: #df9eec;
+}
+
+nav ul li.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #df9eec;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  transition: 0.4s;
+}
+
+/* Add animation for menu bars */
+.menu-toggle .bar:nth-child(1).active {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle .bar:nth-child(2).active {
+  opacity: 0;
+}
+
+.menu-toggle .bar:nth-child(3).active {
+  transform: rotate(-45deg) translate(6px, -6.8px);
+}
+
+/* Responsive purposes ana ka sir */
+@media (max-width: 768px) {
+  .menu-toggle {
+      display: flex;
+  }
+  
+  nav {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: rgba(10, 10, 10, 0.95);
+      width: 100%;
+      padding: 2rem;
+      clip-path: circle(0px at top right);
+      transition: clip-path 0.5s ease-in-out;
+      z-index: 100;
+  }
+  
+  nav.active {
+      clip-path: circle(1000px at top right);
+  }
+  
+  nav ul {
+      flex-direction: column;
+  }
+  
+  nav ul li {
+      margin: 1rem 0;
+  }
+}
+
+/* custom scrollbar ni uy */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a; 
+  border-left: 2px solid #f0aae4; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f0aae4, #f5c3ee);
+  border-radius: 10px;
+  border: 2px solid #1a1a1a; /* inner shadow look */
+  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #f0aae4, #d483b2); 
+}
+
+/* Optional: Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #f0aae4 #1a1a1a;
+}
+
+
+.contact-hero {
+  max-width: 700px;
+  margin: 5vw auto 0 auto;
+  padding: 0 2vw;
+  background: none;
+}
+.contact-title {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+.contact-row {
+  display: flex;
+  gap: 2vw;
+}
+.contact-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+}
+.contact-field input,
+.contact-field textarea {
+  border: none;
+  border-bottom: 2px solid #aaa;
+  background: transparent;
+  font-size: 1.2rem;  
+  color: #d3cfcf;
+  padding: 0.4em 0 0.2em 0;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  resize: none;
+}
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-bottom: 2px solid #f7b733;
+}
+.contact-field label {
+  color: #bbb;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5em;
+  pointer-events: none;
+  transition: color 0.2s, transform 0.2s, font-size 0.2s;
+  transform: translateY(0.2em);
+}
+.contact-field input:focus + label,
+.contact-field input:not(:placeholder-shown) + label,
+.contact-field textarea:focus + label,
+.contact-field textarea:not(:placeholder-shown) + label {
+  color: #222;
+  font-size: 0.95rem;
+  transform: translateY(-1.5em);
+}
+.contact-message textarea {
+  min-height: 2.5em;
+  font-size: 1.2rem;
+}
+.contact-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5em;
+}
+.contact-send {
+  background: none;
+  color: #222;
+  border: 1.5px solid #f7b733;
+  border-radius: 0;
+  padding: 0.5em 2.2em;
+  font-size: 1rem;
+  font-family: 'Montserrat', serif;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+}
+.contact-send:hover,
+.contact-send:focus {
+  background: #f7b733;
+  color: #fff;
+}
+
+/* Info Footer */
+.contact-info-footer {
+  display: flex;
+  font-family: "Pixelify Sans", sans-serif;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2vw;
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 2vw 0 0 0;
+  border: none;
+  color: #222;
+  font-size: 1rem;
+  background: none;
+}
+.contact-info-col {
+  flex: 1;
+  min-width: 160px;
+  font-size: 0.98rem;
+  color: #222;
+  text-align: left;
+}
+.contact-info-label {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: #222;
+  font-size: 1.05rem;
+}
+.contact-info-footer a {
+  color: #f7b733;
+  text-decoration: none;
+  border-bottom: 1px solid #f7b733;
+  transition: color 0.2s;
+}
+.contact-info-footer a:hover {
+  color: #222;
+  border-bottom: 1px solid #222;
+}
+
+@media (max-width: 700px) {
+  .contact-row {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .contact-info-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 0.97rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-info-col {
+    min-width: 0;
+    text-align: center;
+  }
+  .contact-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-hero {
+    padding: 0 4vw;
+  }
+  .contact-title {
+    font-size: 1.8rem;
+  }
+  .contact-info-footer {
+    font-size: 0.93rem;
+    padding: 1.2em 0 0 0;
+  }
+}
+
+.contact-title,
+.contact-form,
+.contact-form input,
+.contact-form textarea,
+.contact-form label,
+.contact-send,
+.contact-info-footer,
+.contact-info-col,
+.contact-info-label {
+  color: #fff !important;
+}
+
+.contact-field input,
+.contact-field textarea {
+  color: #fff;
+}
+
+.contact-field label {
+  color: #eee;
+}
+
+.contact-info-footer a {
+  color: #f7b733;
+  border-bottom: 1px solid #f7b733;
+}
+.contact-info-footer a:hover {
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+.back-to-top {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #222;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, background 0.2s, box-shadow 0.2s;
+}
+.back-to-top:hover, .back-to-top:focus {
+  background: #444;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 600px) {
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    bottom: 20px;
+  }
+}
+
+/* Footer*/
+footer {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 251, 251, 0.829);
+  color: #2c2c2c;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #ffffff;
+  color: #050505;
+  transform: translateY(-3px);
+}
+
+.copyright {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  color:#bbb;
+}

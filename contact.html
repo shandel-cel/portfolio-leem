@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emmanuel's Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- welcome -->
+  <div class="welcome-overlay">
+    <div class="welcome-text">contact me ;3 </div>
+  </div>
+
+  <!-- GIF -->
+ <div class="bg-container"></div>
+
+  <div class="container">
+    <div class="content-wrapper">
+      <header>
+        <div class="logo">LE EM<button id="change-bg-btn" class="icon-btn" title="Change Background">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </button></div>
+        <div class="menu-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Knowledge</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section class="contact-hero">
+          <h1 class="contact-title">Contact me for work.<br>I'd love to hear from you!</h1>
+          <form class="contact-form" action="#" method="post" autocomplete="off">
+            <div class="contact-row">
+              <div class="contact-field">
+                <input type="text" id="name" name="name" required placeholder=" " />
+                <label for="name">Name</label>
+            </div>
+              <div class="contact-field">
+                <input type="email" id="email" name="email" required placeholder=" " />
+                <label for="email">Your e-mail</label>
+              </div>
+            </div>
+            <div class="contact-field contact-message">
+              <textarea id="message" name="message" rows="2" required placeholder=" "></textarea>
+              <label for="message">Message me</label>
+            </div>
+            <div class="contact-actions">
+              <button type="submit" class="contact-send">Send</button>
+            </div>
+          </form>
+        </section>
+        <footer class="contact-info-footer">
+          <div class="contact-info-col">
+            <div class="contact-info-label">Address</div>
+            <div>IGACOS, Purok 5 Behai, Brgy Miranda Babak District <br>8119 Daval Del Norte, Philippines</div>
+                </div>
+          <div class="contact-info-col">
+            <div class="contact-info-label">Get in Touch</div>
+            <div>Phone: 63+ 932 756 7494<br><a href="mailto:emmanuel.tecson@jmc.edu.ph">emmanuel.tecson@jmc.edu.ph</a></div>
+          </div>
+        </footer>
+      </main>
+            </div>
+          </div>
+        <!-- footer -->
+      <footer>
+        <div class="social-links">
+          <a href="https://www.facebook.com/BSIT2NDYR" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://x.com/shandywastaken" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/sonataceleem/" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p class="copyright">&copy; 2025 Le Em Portfolio. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="javascript/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="javascript/email.js"></script>
+</body>
+</html>
