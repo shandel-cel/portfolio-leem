@@ -135,67 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(style);
     });
 });
-  /* Modern Slideshow */
-  document.addEventListener('DOMContentLoaded', function() {
-    const track = document.getElementById('track');
-    const slides = document.querySelectorAll('.showcase-slide');
-    const prev = document.getElementById('prev');
-    const next = document.getElementById('next');
-    const dots = document.querySelectorAll('.dot');
-    let currentIndex = 0;
-    let isAnimating = false;
-    let autoplayInterval;
-
-    function updateSlideshow(index) {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        // Update track position
-        track.style.transform = `translateX(-${index * 100}%)`;
-
-        // Update dots
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-
-        // Reset animation flag after transition
-        setTimeout(() => {
-            isAnimating = false;
-        }, 500);
-    }
-
-    function goToSlide(index) {
-        currentIndex = (index + slides.length) % slides.length;
-        updateSlideshow(currentIndex);
-    }
-
-    function nextSlide() {
-        goToSlide(currentIndex + 1);
-    }
-
-    // Event Listeners
-    prev.addEventListener('click', () => {
-        clearInterval(autoplayInterval);
-        goToSlide(currentIndex - 1);
-        startAutoplay();
-    });
-
-    next.addEventListener('click', () => {
-        clearInterval(autoplayInterval);
-        goToSlide(currentIndex + 1);
-        startAutoplay();
-    });
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            clearInterval(autoplayInterval);
-            goToSlide(index);
-            startAutoplay();
-        });
-    });
-
-  });
-
+ 
 
 
 
@@ -237,28 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
         slideCounter.textContent = `${timelineIndex + 1} / ${timelineSlides.length}`;
     }
 
-    // Auto-advance Timeline
-    function startAutoScroll() {
-        if (autoScrollInterval) clearInterval(autoScrollInterval);
-        autoScrollInterval = setInterval(() => {
-            if (isAutoScrolling) {
-                moveTimeline(1);
-            }
-        }, 6000); // 6 seconds per slide
-    }
-
-    // Stop auto-scroll on hover
-    const timelineContainer = document.querySelector('.vertical-timeline');
-    timelineContainer.addEventListener('mouseenter', () => {
-        isAutoScrolling = false;
-        document.querySelector('.auto-indicator').style.opacity = '0.3';
-    });
-
-    timelineContainer.addEventListener('mouseleave', () => {
-        isAutoScrolling = true;
-        document.querySelector('.auto-indicator').style.opacity = '0.6';
-    });
-
     // Keyboard Navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowUp') {
@@ -270,42 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Touch/Swipe Support for Mobile
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    timelineContainer.addEventListener('touchstart', (e) => {
-        touchStartY = e.changedTouches[0].screenY;
-    });
-
-    timelineContainer.addEventListener('touchend', (e) => {
-        touchEndY = e.changedTouches[0].screenY;
-        handleSwipe();
-    });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartY - touchEndY;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                // Swipe up - next slide
-                moveTimeline(1);
-            } else {
-                // Swipe down - previous slide
-                moveTimeline(-1);
-            }
-        }
-    }
-
-    // Initialize
-    function init() {
-        updateTimeline();
-        startAutoScroll();
-    }
-
-    // Start when page loads
-    document.addEventListener('DOMContentLoaded', init);
+  
+    
 
     // Smooth scroll behavior for better UX
     timelineTrack.style.scrollBehavior = 'smooth';
